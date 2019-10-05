@@ -1,0 +1,70 @@
+Класс - тип данных предоставляющий модель какой-то сущности
+Объект - конкретная реализация какого-то класса(экземляра)
+=====================
+class Empty:
+    def hello(self) -- метод
+        print ("hello")
+----
+class HelloWorld:
+    def hello(self):
+        print ("hello")
+hw = HelloWorld()
+hw.hello()
+----
+class HelloWorld:
+    def __init__(self, name, last_name)
+        self.name = name
+        self.last_name = last_name
+p = HelloWorld('damon', 'lanav')
+print(p.name, p.last_name)
+====================
+__init__ - отвечает за инициализацию объекта
+self -- обязателен аргумент, через него передается экземпляр класса, который вызывается. Задается всегда
+name, last_name - атрибуты. name=None - указывает что по умолчанию атрибут name - пустой
+
+=====================
+@staticmethod определяет обычную функцию в пространстве имён класса. Может быть полезно для вспомогательных _* функций, чтобы не мусорить пространство
+имён модуля.
+
+@classmethod создаёт метод класса. Объект класса явно передаётся через первый параметр как это с параметром self происходит для обычных методов.
+Также как и для self, переданный cls может отличаться от класса, в котором определён класс-метод (может быть потомок). Часто используется для создания
+альтернативных конструкторов
+пример
+class Date(object):
+
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    @classmethod
+    def from_string(cls, date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        date1 = cls(day, month, year)
+        return date1
+
+    @staticmethod
+    def is_date_valid(date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        return day <= 31 and month <= 12 and year <= 3999
+
+date2 = Date.from_string('11-09-2012')
+is_date = Date.is_date_valid('11-09-2012')
+===========================
+
+
+
+
+
+===== Принципы ООП ====
+* Абстракция
+* Инкапсуляция
+* Полиморфизм
+* Наследование
+
+        Инкапсуляция:
+Свойство сислетмы, позволяющее объеденить данные и методы, работающие с ними, в классы, и скрыть детали реализации.
+Инкапсуляция обеспечивается следующимии свойствами:
+*   Контроль доступа
+*   методы доступа
+*   свойство объекта
